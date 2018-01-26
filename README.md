@@ -27,3 +27,7 @@ go build
 - Install Dep
 
 https://github.com/golang/dep
+
+- Install Travis
+
+`brew install travis`
