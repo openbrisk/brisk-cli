@@ -20,7 +20,7 @@ export PATH=$PATH:$GOPATH/bin
 ```bash
 mkdir -p $GOPATH/src/github.com/openbrisk
 cd $GOPATH/src/github.com/openbrisk
-git clone https://guthub.com/openbrisk/brisk-cli
+git clone https://github.com/openbrisk/brisk-cli
 cd brisk-cli
 go build
 ```
