@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/morikuni/aec"
 	"github.com/openbrisk/brisk-cli/version"
 	"github.com/spf13/cobra"
 )
@@ -12,7 +13,7 @@ var (
 )
 
 func init() {
-	versionCmd.Flags().BoolVar(&shortVersion, "short", false, "Just print the version")
+	versionCmd.Flags().BoolVar(&shortVersion, "short", false, "just print the version")
 
 	rootCmd.AddCommand(versionCmd)
 }
@@ -23,29 +24,29 @@ var versionCmd = &cobra.Command{
 	Long:  "The version command returns the current version information for the OpenBrisk CLI.",
 	Example: `  brisk version
   brisk version --short`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: runCommand,
+}
 
-		if(shortVersion) {
-			fmt.Print(version.Version)
-		}
-		else {
-			printFiglet()
-			fmt.Printf("Version: %s", version.Version)
-			fmt.Printf("GitHash: %s", version.GitCommitHash)
-		}
-
-	},
+func runCommand(cmd *cobra.Command, args []string) {
+	if shortVersion {
+		fmt.Printf("%s\n", version.Version)
+	} else {
+		printFiglet()
+		fmt.Printf("Version: %s\n", version.Version)
+		fmt.Printf("GitHash: %s\n", version.GitCommitHash)
+	}
 }
 
 func printFiglet() {
-	figletColoured := aec.GreenF.Apply(figletStr)
-	fmt.Printf(figletColoured)
+	coloredFiglet := aec.GreenF.Apply(figlet)
+	fmt.Printf(coloredFiglet)
 }
 
 const figlet = `  ___                   ____       _     _
-/ _ \ _ __   ___ _ __ | __ ) _ __(_)___| | __
+ / _ \ _ __   ___ _ __ | __ ) _ __(_)___| | __
 | | | | '_ \ / _ \ '_ \|  _ \| '__| / __| |/ /
 | |_| | |_) |  __/ | | | |_) | |  | \__ \   <
-\___/| .__/ \___|_| |_|____/|_|  |_|___/_|\_\
-	 |_|
+ \___/| .__/ \___|_| |_|____/|_|  |_|___/_|\_\
+      |_|
+
 `

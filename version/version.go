@@ -1,6 +1,6 @@
 package version
 
 var (
-	Version       string
-	GitCommitHash string
+	Version       string = "0.0.0"
+	GitCommitHash string = ""
 )

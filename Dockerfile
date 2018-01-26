@@ -16,7 +16,7 @@ RUN go test $(go list ./... | grep -v /vendor/ | grep -v /template/|grep -v /bui
  && CGO_ENABLED=0 GOOS=linux go build --ldflags "-s -w \
     -X github.com/openbrisk/brisk-cli/version.GitCommitHash=${GIT_COMMIT} \
     -X github.com/openbrisk/brisk-cli/version.Version=${VERSION}" \
-    -a -installsuffix cgo -o brisk-cli
+    -a -installsuffix cgo -o brisk
 
 # Release stage
 FROM alpine:3.6
@@ -25,6 +25,4 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
-COPY --from=builder /go/src/github.com/openbrisk/brisk-cli/brisk-cli .
-
-CMD ["./brisk"]
+COPY --from=builder /go/src/github.com/openbrisk/brisk-cli/brisk .

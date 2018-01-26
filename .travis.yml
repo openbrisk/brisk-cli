@@ -1,0 +1,35 @@
+sudo: required
+
+language: go
+
+go:
+  - 1.9.x
+install:
+  - echo "Please don't go get"
+
+services:
+  - docker
+
+before_script:
+  - curl -sSL test.docker.com | sudo -E sh
+
+script:
+  - make build
+
+before_deploy:
+  - make release
+
+deploy:
+  provider: releases
+  api_key:
+    secure: p/2/8hS+oPT7jFmmUsKc7uvWLiFMIsAtECI2XGkgiaKdEsJNypF7yOCH+DRfEgUOVmQmarUNk7V//lANHNF6TIFNSvmG21Y2+/aIyuFYfpHEDegdJBs8CLnlwvcErngn6um9v4IyZSfTXQJOWL4R+Om24OCMkvEBRwJIE0Mw0WstgWDtJfqhgxxxBlOmEK3d2iljH8dBjC8gL1Q0Pup58AIq9f++0R5qePHHvV8jKXc1vZ40zuzRqXJqxRjBz6CX3UPjJiUZYUXNeaai0gYMeJDSEffHoiFRGY5a4RFjelE8ppq0VU8BVj5AgpvU8Et0mOCY0jflUJX5C8kFV4Ti0s5s1alwZb+jIL0v539MbPcU4nKETTKWYxRmll4TOCjQ64DM45z0g7SymD1z3pkVwx/Cz4H9Hr1La/r9y2HyeXl2jmlQy2BZmaKP4JEEclM4Pdsf43aabPYQ4x1BeA6Du0cqLL8dvSagWGRdimxwMJI4PEk4P3eqpTJILnDI+HPloF+r4dooO6rrohdBqEWSKV/MpTWLte5z6kGnjeWKEvB1CSkFlFu+6I/tw+frntfE26Hfgt8xwdf7JBr24Q9NPaZNFEKAe/BHIDAQfAx0BHQZrSy4gvRzUk8YazL78MaxTtHe0p2c6aGbfsp0lhynw4F+yHCxNPqh8JCBmz0xQWo=
+  file:
+    - brisk
+    - brisk-darwin
+    - brisk-armhf
+    - brisk.exe
+    - brisk-arm64
+  skip_cleanup: true
+  on:
+    repo: openbrisk/brisk-cli
+    tags: true
