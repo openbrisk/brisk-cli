@@ -9,18 +9,11 @@ import (
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "brisk [command] (flags)",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Manage your OpenBrisk functions and topics from the command line",
+	Long:  "Manage your OpenBrisk functions and topics from the command line",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
@@ -50,26 +43,29 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
-	} else {
-		// Find home directory.
-		home, err := homedir.Dir()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		// Search config in home directory with name ".rapidgarden" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigName(".openbrisk")
+	// Find home directory.
+	home, err := homedir.Dir()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
 	}
+
+	viper.SetConfigType("yaml")
+	viper.SetConfigName("config")
+
+	// Search config in home directory with name ".openbrisk".
+	viper.AddConfigPath(".")
+	viper.AddConfigPath(home + "/.openbrisk")
 
 	viper.AutomaticEnv() // read in environment variables that match
 
+	// Use the cluster at localhost by default.
+	viper.SetDefault("clusterUrl", "http://localhost:8080")
+
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	if err := viper.ReadInConfig(); err != nil {
+		panic(fmt.Errorf("Fatal error config file: %s", err))
 	}
+
+	fmt.Println("Using config file:", viper.ConfigFileUsed())
 }

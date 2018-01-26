@@ -20,3 +20,5 @@ brisk-darwin
 brisk-armhf
 brisk-arm64
 brisk-cli
+
+config.yml

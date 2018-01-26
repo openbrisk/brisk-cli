@@ -13,7 +13,7 @@ var (
 )
 
 func init() {
-	versionCmd.Flags().BoolVar(&shortVersion, "short", false, "just print the version")
+	versionCmd.Flags().BoolVarP(&shortVersion, "short", "s", false, "just print the version")
 
 	rootCmd.AddCommand(versionCmd)
 }
@@ -24,10 +24,10 @@ var versionCmd = &cobra.Command{
 	Long:  "The version command returns the current version information for the OpenBrisk CLI.",
 	Example: `  brisk version
   brisk version --short`,
-	Run: runCommand,
+	Run: runVersionCommand,
 }
 
-func runCommand(cmd *cobra.Command, args []string) {
+func runVersionCommand(cmd *cobra.Command, args []string) {
 	if shortVersion {
 		fmt.Printf("%s\n", version.Version[1:len(version.Version)])
 	} else {
