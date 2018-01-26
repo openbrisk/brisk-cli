@@ -19,3 +19,4 @@ brisk.exe
 brisk-darwin
 brisk-armhf
 brisk-arm64
+brisk-cli

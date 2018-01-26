@@ -29,10 +29,10 @@ var versionCmd = &cobra.Command{
 
 func runCommand(cmd *cobra.Command, args []string) {
 	if shortVersion {
-		fmt.Printf("%s\n", version.Version)
+		fmt.Printf("%s\n", version.Version[1:len(version.Version)])
 	} else {
 		printFiglet()
-		fmt.Printf("Version: %s\n", version.Version)
+		fmt.Printf("Version: %s\n", version.Version[1:len(version.Version)])
 		fmt.Printf("GitHash: %s\n", version.GitCommitHash)
 	}
 }
