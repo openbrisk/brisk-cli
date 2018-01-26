@@ -1,7 +1,5 @@
 [![Build Status](https://api.travis-ci.org/openbrisk/brisk-cli.svg?branch=master)](https://travis-ci.org/openbrisk/brisk-cli)
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-
 [![OpenBrisk](https://img.shields.io/badge/openbrisk-serverless-blue.svg)](https://www.openbrisk.org)
 
 # OpenBrisk CLI
