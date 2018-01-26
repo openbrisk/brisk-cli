@@ -24,3 +24,6 @@ git clone https://github.com/openbrisk/brisk-cli
 cd brisk-cli
 go build
 ```
+- Install Dep
+
+https://github.com/golang/dep
