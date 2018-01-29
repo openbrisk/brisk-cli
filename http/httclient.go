@@ -1,13 +1,7 @@
 package http
 
-import (
-	"net"
-	"net/http"
-	"time"
-)
-
 // CreateHTTPClient creates a http client with some sane defaults.
-func CreateHTTPClient(timeout *time.Duration) http.Client {
+/*func CreateHTTPClient(timeout *time.Duration) http.Client {
 
 	if timeout != nil {
 		return http.Client{
@@ -25,4 +19,4 @@ func CreateHTTPClient(timeout *time.Duration) http.Client {
 
 	// THisd should be used for brisk invoke.
 	return http.Client{}
-}
+}*/
