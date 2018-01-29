@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker build --build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy -t brisk-cli . -f Dockerfile.release && \
+docker build --build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy -t brisk-cli . -f release.Dockerfile && \
 docker create --name brisk-cli brisk-cli && \
 docker cp brisk-cli:/root/brisk . && \
 docker cp brisk-cli:/root/brisk-darwin . && \
