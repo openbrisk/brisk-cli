@@ -6,6 +6,5 @@ docker cp brisk-cli:/root/brisk . && \
 docker cp brisk-cli:/root/brisk-darwin . && \
 docker cp brisk-cli:/root/brisk-armhf . && \
 docker cp brisk-cli:/root/brisk-arm64 . && \
-docker cp brisk-cli:/root/brisk.exe .
-
+docker cp brisk-cli:/root/brisk.exe . && \
 docker rm -f brisk-cli
