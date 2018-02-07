@@ -1,0 +1,13 @@
+configuration:
+  gateway: http://localhost:8080
+
+functions:
+  - function:
+    name: hello_world
+    namespace: util
+    runtime: dotnetcore
+    module: HelloWorld  # MODULE_NAME
+    handler: Execute    # FUNCTION_HANDLER    
+    files:
+      func: ./examples/dotnetcore/HelloWorld.cs
+      deps: ./examples/dotnetcore/HelloWorld.csproj
